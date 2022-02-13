@@ -4,6 +4,7 @@ import com.bridgelabz.addressbook_application.dto.AddressBookDTO;
 import lombok.Data;
 
 @Data
+/**Sec-3-UC-1 Using Lombok **/
 public class AddressBook_attributes {
 
     private long id;
