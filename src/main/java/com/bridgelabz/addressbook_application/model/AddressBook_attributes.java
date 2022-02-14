@@ -20,6 +20,18 @@ public class AddressBook_attributes {
     private String city;
     private String state;
     private int zip_code;
+    private String email;
+
+
+    public  AddressBook_attributes(AddressBookDTO addressBookDTO) {
+        this.full_name = addressBookDTO.full_name;
+        this.address = addressBookDTO.address;
+        this.phone_number = addressBookDTO.phone_number;
+        this.city = addressBookDTO.city;
+        this.state = addressBookDTO.state;
+        this.zip_code = addressBookDTO.zip_code;
+        this.email = addressBookDTO.email;
+    }
 
     public AddressBook_attributes(long id, AddressBookDTO addressBookDTO) {
         this.id = id;
@@ -29,5 +41,7 @@ public class AddressBook_attributes {
         this.city = addressBookDTO.city;
         this.state = addressBookDTO.state;
         this.zip_code = addressBookDTO.zip_code;
+        this.email = addressBookDTO.email;
+
     }
 }
