@@ -10,20 +10,12 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class AddressBookService implements  IFAddressBookServices{
+
     static List<AddressBook_attributes> addressBookList = new ArrayList<AddressBook_attributes>();
     private static final AtomicLong COUNTER = new AtomicLong(); // to auto increment the id.
 
     private static AddressBook_attributes returnAddressBookById(long id) {
-        for (AddressBook_attributes addressBook_attributes : addressBookList) {
-            long addressBookID = addressBook_attributes.getId();
-            if (addressBookID == id) {
-                System.out.println(addressBook_attributes);
-                return addressBook_attributes;
-            } else {
-                continue;
-            }
-        }
-        return null;
+        return addressBookList.stream().filter(addressBook -> addressBook.getId() == id).findFirst().orElse(null);
     }
 
     @Override
@@ -52,9 +44,13 @@ public class AddressBookService implements  IFAddressBookServices{
 
     @Override
     public AddressBook_attributes updateAddressBookById(AddressBookDTO addressBookDTO, String id) {
-        AddressBook_attributes addressBookById  = returnAddressBookById(Long.parseLong(id));
-        addressBookById.setName(addressBookDTO.name);
+        AddressBook_attributes addressBookById = returnAddressBookById(Long.parseLong(id));
+        addressBookById.setFull_name(addressBookDTO.full_name);
         addressBookById.setAddress(addressBookDTO.address);
+        addressBookById.setPhone_number(addressBookDTO.phone_number);
+        addressBookById.setCity(addressBookDTO.city);
+        addressBookById.setState(addressBookDTO.state);
+        addressBookById.setZip_code(addressBookDTO.zip_code);
         return addressBookById;
     }
 
